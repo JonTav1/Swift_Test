@@ -25,6 +25,23 @@ class FirstVC: UIViewController {
         
     }()
     
+    private lazy var catButton: UIButton = {
+        
+        let button = UIButton(type: .system)
+        button.setTitle("cat", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemGray
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+        button.addTarget(self, action: #selector(switchVC2), for: .touchUpInside)
+        return button
+        
+    }()
+    
+    
+    
     
    
     
@@ -50,13 +67,28 @@ class FirstVC: UIViewController {
             make.centerX.equalToSuperview()
         }
         
+        view.addSubview(catButton)
+        
+        catButton.snp.makeConstraints{ make in
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.bottom.equalTo(firstButton.snp.top).offset(-20)
+            make.centerX.equalToSuperview()
+        }
         // Do any additional setup after loading the view.
     }
     
+    //change to one switchVC function later
     @objc func switchVC() {
         let newVC = SecondVC()
         self.present(newVC, animated: true, completion: nil)
     }
+    
+    @objc func switchVC2() {
+        let newVC = TextViewVC()
+        self.present(newVC, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
